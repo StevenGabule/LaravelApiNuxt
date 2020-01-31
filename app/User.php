@@ -6,6 +6,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Topic;
+use App\Post;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -55,6 +57,14 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function ownsTopic(Topic $topic) {
+        return $this->id === $topic->user->id;
+    }
+
+    public function ownsPosts(Post $post) {
+        return $this->id === $post->user->id;
     }
 
 }
