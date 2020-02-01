@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\Topic;
+use App\Like;
 use Illuminate\Http\Request;
-use App\Http\Resources\Post as PostResource;
-use App\Http\Requests\PostRequest;
-class PostController extends Controller
+
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,33 +33,29 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request, Topic $topic)
+    public function store(Request $request)
     {
-        $post = new Post();
-        $post->body = $request->body;
-        $post->user()->associate($request->user());
-        $topic->posts()->save($post);
-        return new PostResource($post);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Topic $topic, Post $post)
+    public function show(Like $like)
     {
-        return new PostResource($post);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Like $like)
     {
         //
     }
@@ -70,27 +64,22 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, Topic $topic, Post $post)
+    public function update(Request $request, Like $like)
     {
-        $this->authorize('update', $post);
-        $post->body = $request->get('body', $post->body);
-        $post->save();
-        return new PostResource($post);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Topic $topic, Post $post)
+    public function destroy(Like $like)
     {
-        $this->authorize('delete', $post);
-        $post->delete();
-        return response(null, 204);
+        //
     }
 }

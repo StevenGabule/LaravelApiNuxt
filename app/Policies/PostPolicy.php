@@ -20,12 +20,16 @@ class PostPolicy
         //
     }
     
-    public function update(User $user, Post $topic) {
-        return $user->ownsPosts($topic);
+    public function update(User $user, Post $post) {
+        return $user->ownsPosts($post);
     }
 
-    public function delete(User $user, Post $topic) {
-        return $user->ownsPosts($topic);
+    public function delete(User $user, Post $post) {
+        return $user->ownsPosts($post);
+    }
+
+    public function like(User $user, Post $post) {
+        return !$user->ownsPosts($post);
     }
 
 }
